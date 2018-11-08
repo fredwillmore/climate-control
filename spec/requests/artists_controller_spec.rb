@@ -1,45 +1,45 @@
 require 'rails_helper'
 require 'support/factory_bot'
 
-describe PlaylistsController do
+describe ArtistsController do
   before do
-    @playlist =  create :playlist, { date: '2000-01-01' } 
+    @artist = create :artist, { name: 'Hello World' }
   end
 
   describe "GET #index" do
     before do
-      get :index, params: {format: :json}
+      get '/artists', params: {format: :json}
     end
 
     it "returns http success" do
       expect(response).to have_http_status(:success)
     end
 
-    it "response with JSON body containing playlist" do
+    it "response with JSON body containing artist" do
       record = nil
       expect { record = JSON.parse(response.body) }.not_to raise_exception
-      expect(record[0].slice('id', 'date')).to match({
-       'id' => @playlist.id,
-       'date' => '2000-01-01'
+      expect(record[0].slice('id', 'name')).to match({
+       'id' => @artist.id,
+       'name' => 'Hello World'
       })
     end
   end
 
   describe "GET #show" do
     before do
-      get :show, params: {id: @playlist.id, format: :json}
+      get "/artists/#{@artist.id}", params: {format: :json}
     end
 
     it "returns http success" do
       expect(response).to have_http_status(:success)
     end
 
-    it "response with JSON body containing playlist" do
+    it "response with JSON body containing artist" do
       record = nil
       expect { record = JSON.parse(response.body) }.not_to raise_exception
-      expect(record.slice('id', 'date')).to match({
-       'id' => @playlist.id,
-       'date' => '2000-01-01'
+      expect(record.slice('id', 'name')).to match({
+       'id' => @artist.id,
+       'name' => 'Hello World'
       })
     end
   end

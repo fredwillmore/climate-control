@@ -1,7 +1,7 @@
 require 'rails_helper'
 require 'support/factory_bot'
 
-describe Playlists::PlaylistItemsController do
+describe PlaylistItemsController do
   before do
     @artist = create :artist, { name: 'Hello World' }
     @track =  create :track, { name: 'Hello World', artist: @artist } 
@@ -11,7 +11,7 @@ describe Playlists::PlaylistItemsController do
 
   describe "GET #index" do
     before do
-      get :index, params: { playlist_id: @playlist.id, format: :json }
+      get "/playlist_items", params: {format: :json}
     end
 
     it "returns http success" do
@@ -30,7 +30,7 @@ describe Playlists::PlaylistItemsController do
 
   describe "GET #show" do
     before do
-      get :show, params: { playlist_id: @playlist.id, id: @playlist_item.id, format: :json }
+      get "/playlist_items/#{@playlist_item.id}", params: {format: :json}
     end
 
     it "returns http success" do
