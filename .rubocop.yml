@@ -1,0 +1,71 @@
+require:
+  - rubocop-rspec
+  - rubocop-rails
+
+AllCops:
+  TargetRubyVersion: 2.5
+
+Rails:
+  Enabled: true
+
+# Layout
+Layout/DotPosition:
+  EnforcedStyle: trailing
+
+# Lint
+Lint/UnusedMethodArgument:
+  Enabled: false
+
+# Metrics
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*.rb
+
+Metrics/LineLength:
+  Enabled: true
+  Max: 160
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ModuleLength:
+  Exclude:
+    - spec/**/*.rb
+
+
+# Style
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
+  Exclude: 
+    - db/migrate/*.rb
+
+Style/NegatedIf:
+  EnforcedStyle: postfix
+
+Style/StringLiterals:
+  EnforcedStyle: double_quotes
+
+Style/SymbolArray:
+  EnforcedStyle: brackets
+
+
+Style/WordArray:
+  EnforcedStyle: brackets
+
+
+# Rails
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - cypress
+
+# RSpec
+RSpec/ImplicitSubject:
+  Enabled: false
+  
+RSpec/NestedGroups:
+  Enabled: false
