@@ -1,6 +1,9 @@
 class PlaylistsController < ApplicationController
   def index
     respond_to do |format|
+      format.html { 
+        render
+      }
       format.json { render json: Playlist.all }
     end
   end
