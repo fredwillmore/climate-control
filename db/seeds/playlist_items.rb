@@ -1,6 +1,9 @@
 require 'yaml'
 
-data = YAML.load(File.read('db/seeds/data/playlist_items.yml'))
+data = YAML.load_file(
+  'db/seeds/data/playlist_items.yml', 
+  permitted_classes: [Date]
+)
 data.each do |k, playlist_item|
   PlaylistItem.create(
     track: Track.find( playlist_item['trackid'] ),
