@@ -4,6 +4,6 @@ class ApplicationController < ActionController::API
   before_action :cross_origin_header
 
   def cross_origin_header
-    response.set_header 'Access-Control-Allow-Origin', 'http://localhost:3001'
+    response.set_header 'Access-Control-Allow-Origin', 'http://localhost:3000'
   end
 end
