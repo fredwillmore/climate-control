@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   include ActionController::MimeResponds # TODO: is it better to use gem 'responders'
 
   before_action :cross_origin_header
