@@ -1,15 +1,9 @@
 class PlaylistsController < ApplicationController
   def index
-    respond_to do |format|
-      format.json { render json: Playlist.all }
-    end
+    redirect_to playlist_url(Playlist.first)
   end
 
   def show
-    respond_to do |format|
-      format.json { 
-        render json: Playlist.find(params[:id])
-      }
-    end
+    @playlist = Playlist.find(params[:id]) || Playlist.first
   end
 end
