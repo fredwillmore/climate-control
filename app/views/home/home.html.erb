@@ -1,3 +1,75 @@
 hello this is here
-
 <p data-controller="hello">This text will change!</p>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Playlist</h5>
+            <h6 class="card-subtitle mb-2 text-muted">For selecting playlist</h6>
+            <p class="card-text">Select a playlist by date, and get more information about the playlist and other happenings on that date.</p>
+
+            <a href="#" class="card-link">Previous Playlist</a>
+            <a href="#" class="card-link">Next Playlist</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Track</h5>
+            <h6 class="card-subtitle mb-2 text-muted">For selecting playlist track</h6>
+            <p class="card-text">Select a track, and get more information about the song and artist.</p>
+
+            <a href="#" class="card-link">Previous Track</a>
+            <a href="#" class="card-link">Next Track</a>
+          </div>
+        </div>
+
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Song</h5>
+            <h6 class="card-subtitle mb-2 text-muted">song title</h6>
+            <p class="card-text">This widget is going to have things like album name(s), release date, song writer(s).</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Artist</h5>
+            <h6 class="card-subtitle mb-2 text-muted">artist name</h6>
+            <p class="card-text">This widget is going to have things like albums, group members, formation and dissolution date(s).</p>
+          </div>
+        </div>
+      </div>
+      <div class="col-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Date</h5>
+            <h6 class="card-subtitle mb-2 text-muted">On ths date</h6>
+            <p class="card-text">
+              This is going to have lots of fun stuff - weather info, news stories, social media history, google history, git commits
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div>
+    <%= turbo_frame_tag "playlist_thing_not" do %>
+      <p>
+        <a href="/playlists" data-turbo-action="replace">Edit</a></p>
+
+        <a data-controller="playlist" data-action="click->back"><</a></p>
+        <a data-controller="playlist" data-action="back">Do a thing</a></p>
+      <p>Playlist Thinger</p>
+    <% end %>
+    <%= turbo_frame_tag 'playlist_thing', src: '/playlists' %>
+
+    <a data-controller="playlist" data-action="click->back"><</a>
+      <%= @current_playlist.date %>
+    <a data-controller="playlist" data-action="next">></a>
+    <div>
+      Track Thing
+    </div>
+  </div>
