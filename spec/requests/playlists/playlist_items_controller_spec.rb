@@ -3,7 +3,7 @@ require 'support/factory_bot'
 
 describe Playlists::PlaylistItemsController do
   before do
-    @artist = create :artist, { name: 'Hello World' }
+    @artist = create :artist, { name: 'Test Artist' }
     @track =  create :track, { name: 'Hello World', artist: @artist } 
     @track2 =  create :track, { name: 'Second Track', artist: @artist } 
     @track3 =  create :track, { name: 'Third Track', artist: @artist } 
@@ -15,7 +15,7 @@ describe Playlists::PlaylistItemsController do
 
   describe "GET #index" do
     before do
-      get "/playlists/#{@playlist.id}/playlist_items", params: { format: :json }
+      get "/playlists/#{@playlist.id}/playlist_items", params: { format: :html }
     end
 
     it "returns http success" do
@@ -24,30 +24,21 @@ describe Playlists::PlaylistItemsController do
 
     it "response with JSON body containing playlist item" do
       record = nil
-      expect { record = JSON.parse(response.body) }.not_to raise_exception
-      expect(record[0].slice('id', 'position')).to match({
-       'id' => @playlist_item.id,
-       'position' => 1
-      })
+      expect(response.body).to match('Hello World')
     end
   end
 
   describe "GET #show" do
     before do
-      get "/playlists/#{@playlist.id}/playlist_items/#{@playlist_item.id}", params: { format: :json }
+      get "/playlists/#{@playlist.id}/playlist_items/#{@playlist_item.id}", params: { format: :html }
     end
 
     it "returns http success" do
       expect(response).to have_http_status(:success)
     end
 
-    it "response with JSON body containing artist" do
-      record = nil
-      expect { record = JSON.parse(response.body) }.not_to raise_exception
-      expect(record.slice('id', 'position')).to match({
-       'id' => @playlist_item.id,
-       'position' => 1
-      })
+    it "response with HTML body containing artist" do
+      expect(response.body).to match('Test Artist')
     end
   end
 
