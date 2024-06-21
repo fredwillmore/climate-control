@@ -2,8 +2,8 @@ require 'rails_helper'
 require 'support/factory_bot'
 
 describe PlaylistsController do
-  before do
-    @playlist =  create :playlist, { id: 123, date: '2000-01-01' } 
+  let! :playlist do
+    create :playlist, { id: 123, date: '2000-01-01' }
   end
 
   describe "GET #index" do
@@ -18,7 +18,7 @@ describe PlaylistsController do
 
   describe "GET #show" do
     before do
-      get "/playlists/#{@playlist.id}", params: {format: :html}
+      get "/playlists/123", params: {format: :html}
     end
 
     it "returns http success" do
