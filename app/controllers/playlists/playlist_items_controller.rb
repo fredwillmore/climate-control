@@ -4,11 +4,9 @@ class Playlists::PlaylistItemsController < ApplicationController
   before_action :find_list, only: [:index, :first, :last, :next, :previous]
   
   def show
-    render json: @playlist_item
   end
   
   def index
-    render json: @playlist_items
   end
   
   def first

@@ -1,0 +1,8 @@
+<p>
+  <%= playlist_item.track.artist.name %>
+  -
+  <%= playlist_item.track.name %>
+  <% if playlist_item.track.comments %>
+    (<%= playlist_item.track.comments %>)
+  <% end %>
+</p>

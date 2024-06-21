@@ -1,24 +1,39 @@
 <turbo-frame id="playlists">
-  <%= 
-  # render @playlists
-  %>
   <div class="card">
     <div class="card-body">
       <h5 class="card-title">Playlist</h5>
       <h6 class="card-subtitle mb-2 text-muted">
         <% if @playlist %>
-          <%= @playlist.date %>        
+          <div class="container">
+            <div class="row">
+              <div class="col-2 text-center">
+                <% if @playlist.previous %>
+                  <a href="<%= playlist_url @playlist.previous %>" class="card-link" alt="Previous Playlist"">
+                    <
+                  </a>
+                <% end %>
+              </div>
+              <div class="col-8 text-center">
+                <%= l(@playlist.date) %>        
+              </div>
+              <div class="col-2 text-center">
+                <% if @playlist.next %>
+                  <a href="<%= playlist_url @playlist.next %>" class="card-link" alt="Next Playlist">
+                    >
+                  </a>
+                <% end %>
+              </div>
+            </div>
+          </div>
         <% else %>
           For selecting playlist
         <% end %>
       </h6>
-      <p class="card-text">Select a playlist by date, and get more information about the playlist and other happenings on that date.</p>
 
-      <% if @playlist.previous %>
-        <a href="<%= playlist_url @playlist.previous %>" class="card-link">Previous Playlist</a>
-      <% end %>
-      <% if @playlist.next %>
-        <a href="<%= playlist_url @playlist.next %>" class="card-link">Next Playlist</a>
+      <% if @playlist %>
+        <%= turbo_frame_tag 'playlist_items', src: playlist_playlist_items_path(@playlist.id) %>
+      <% else %>
+        <p class="card-text">Select a playlist by date, and get more information about the playlist and other happenings on that date.</p>
       <% end %>
     </div>
   </div>
