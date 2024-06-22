@@ -1,0 +1,8 @@
+<turbo-frame id="playlist_item">
+  <%= turbo_frame_tag 'track', src: (track_path(@playlist_item.track) if @playlist_item) do %>
+    TODO: make this look like the regular page but with placeholder text
+  <% end %>
+  <%= turbo_frame_tag 'artist', src: (artist_path(@playlist_item.track.artist) if @playlist_item) do %>
+    TODO: make this look like the regular page but with placeholder text
+  <% end %>
+</turbo-frame>

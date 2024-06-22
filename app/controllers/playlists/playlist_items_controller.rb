@@ -8,7 +8,7 @@ class Playlists::PlaylistItemsController < ApplicationController
   
   def index
   end
-  
+
   def first
     render json: @playlist_items.first
   end

@@ -1,8 +1,12 @@
-<p>
-  <%= playlist_item.track.artist.name %>
-  -
-  <%= playlist_item.track.name %>
-  <% if playlist_item.track.comments %>
-    (<%= playlist_item.track.comments %>)
-  <% end %>
-</p>
+<% if playlist_item %>
+  <p>
+    <a
+      href="<%= playlist_playlist_item_url(playlist_item.playlist.id, playlist_item.id) %>"
+      data-turbo-frame="playlist_item"
+    >
+      <%= playlist_item.track.artist.name %>
+      -
+      <%= playlist_item.track.display_name %>
+    </a>
+  </p>
+<% end %>

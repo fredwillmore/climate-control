@@ -5,21 +5,9 @@
     </div>
 
     <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Song</h5>
-          <h6 class="card-subtitle mb-2 text-muted">song title</h6>
-          <p class="card-text">This widget is going to have things like album name(s), release date, song writer(s).</p>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Artist</h5>
-          <h6 class="card-subtitle mb-2 text-muted">artist name</h6>
-          <p class="card-text">This widget is going to have things like albums, group members, formation and dissolution date(s).</p>
-        </div>
-      </div>
+      <%= render :partial => "playlists/playlist_items/playlist_item_frame" %>
     </div>
+
     <div class="col-4">
       <div class="card">
         <div class="card-body">

@@ -1,6 +1,7 @@
 class ArtistsController < ApplicationController
   def index
     respond_to do |format|
+      format.html
       format.json { 
         render json: Artist.all 
       }
@@ -8,9 +9,13 @@ class ArtistsController < ApplicationController
   end
 
   def show
+    @artist = Artist.find(params[:id])
+    @artist_description = "#{@artist.name} is an artist - TODO: get artist info"
+  
     respond_to do |format|
+      format.html
       format.json { 
-        render json: Artist.find(params[:id]) 
+        render json: @artist
       }
     end
   end
