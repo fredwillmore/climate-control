@@ -9,6 +9,14 @@
       </h6>
       <p class="card-text">
         <%= @artist_description %>
+        <% if @genres_description %>
+          <br>
+          <%= @genres_description %>
+        <% end %>
+        <% if @related_artists_description %>
+          <br>
+          <%= @related_artists_description %>
+        <% end %>
       </p>
     </div>
   </div>
