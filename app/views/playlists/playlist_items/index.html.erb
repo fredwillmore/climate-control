@@ -1,3 +1,5 @@
 <turbo-frame id="playlist_items">
-  <%= render :partial => "playlist_item", :collection => @playlist_items, :as => :playlist_item %>
+  <div class="overflow-auto" style="max-height: 300px;">
+    <%= render :partial => "playlist_item", :collection => @playlist_items, :as => :playlist_item %>
+  </div>
 </turbo-frame>
