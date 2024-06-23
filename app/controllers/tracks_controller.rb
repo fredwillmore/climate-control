@@ -10,9 +10,10 @@ class TracksController < ApplicationController
   
   def show
     @track = Track.find(params[:id])
-    @track_description = "#{@track.name} is a track by #{@track.artist.name}. It appears on the album #{}"
-
-    if spotify_track = RSpotify::Track.search(@track.name).first
+    
+    if spotify_track = RSpotify::Track.search("#{@track.display_name} - #{@track.artist.name}").first
+      @spotify_url = spotify_track.external_urls['spotify']
+      @track_description = "#{spotify_track.name} is a track by #{spotify_track.artists.map(&:name).join(', ')}."
       @track_album_description = "It appears on the album #{spotify_track.album.name}"
     end
 

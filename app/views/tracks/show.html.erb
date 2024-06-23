@@ -13,6 +13,10 @@
           <br>
           <%= @track_album_description %>
         <% end %>
+        <br>
+        <% if @spotify_url %>
+          <a href="<%= @spotify_url %>" target="_blank">Open in Spotify</a>
+        <% end %>
       </p>
     </div>
   </div>
