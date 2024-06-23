@@ -38,6 +38,8 @@ describe TracksController do
   describe "GET #show" do
     let!(:spotify_track) do
       double(RSpotify::Track).tap do |track|
+        allow(track).to receive(:id).and_return "2zQl59dZMzwhrmeSBEgiXY"
+        allow(track).to receive(:external_urls).and_return("spotify"=>"https://open.spotify.com/track/2zQl59dZMzwhrmeSBEgiXY")
         allow(track).to receive(:name).and_return "Watermelon Man"
         allow(track).to receive(:artists).and_return [spotify_artist]
         allow(track).to receive(:album).and_return spotify_album
@@ -77,13 +79,11 @@ describe TracksController do
         expect(response).to have_http_status(:success)
       end
 
-      it "responds with HTML body containing track name, artist name, and album name" do
+      it "responds with HTML body containing track name, artist name, album name, and link to track" do
         expect(response.body).to match('Watermelon Man')
         expect(response.body).to match('Herbie Hancock')
-      end
-        
-      it "queries spotify api for more info" do
         expect(response.body).to match('Head Hunters')
+        expect(response.body).to match('https://open.spotify.com/track/2zQl59dZMzwhrmeSBEgiXY')
       end
     end
   
