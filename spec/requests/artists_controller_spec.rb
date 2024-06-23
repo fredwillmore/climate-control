@@ -18,6 +18,10 @@ describe ArtistsController do
       it "returns http success" do
         expect(response).to have_http_status(:success)
       end
+
+      it "renders a template" do
+        expect(response).to render_template(:index)
+      end
     end
 
     context "with json format" do
