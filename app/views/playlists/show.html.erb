@@ -8,9 +8,10 @@
             <div class="row">
               <div class="col-2 text-center">
                 <% if @playlist.previous %>
-                  <a href="<%= playlist_url @playlist.previous %>" class="card-link" alt="Previous Playlist"">
+                  <a href="<%= playlist_url @playlist.previous %>" class="card-link" alt="Previous Playlist" onclick="document.querySelector('#secondary-click-previous').click()">
                     <
                   </a>
+                  <a id="secondary-click-previous" href="<%= "/playlists/#{@playlist.previous.id}/date_info" %>" data-turbo-frame="date_info" class="card-link"></a>
                 <% end %>
               </div>
               <div class="col-8 text-center">
@@ -18,9 +19,10 @@
               </div>
               <div class="col-2 text-center">
                 <% if @playlist.next %>
-                  <a href="<%= playlist_url @playlist.next %>" class="card-link" alt="Next Playlist">
+                  <a href="<%= playlist_url @playlist.next %>" class="card-link" alt="Next Playlist" onclick="document.querySelector('#secondary-click-next').click()">
                     >
                   </a>
+                  <a id="secondary-click-next" href="<%= "/playlists/#{@playlist.next.id}/date_info" %>" data-turbo-frame="date_info" class="card-link"></a>
                 <% end %>
               </div>
             </div>

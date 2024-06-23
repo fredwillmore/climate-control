@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-4">
-      <%= turbo_frame_tag 'playlists', src: '/playlists' %>
+    <div class="col-4">
+      <%= turbo_frame_tag 'playlists', src: playlist_url(@playlist) %>
     </div>
 
     <div class="col-4">
@@ -9,15 +9,7 @@
     </div>
 
     <div class="col-4">
-      <div class="card">
-        <div class="card-body">
-          <h5 class="card-title">Date</h5>
-          <h6 class="card-subtitle mb-2 text-muted">On ths date</h6>
-          <p class="card-text">
-            This is going to have lots of fun stuff - weather info, news stories, social media history, google history, git commits
-          </p>
-        </div>
-      </div>
+      <%= turbo_frame_tag 'date_info', src: "/playlists/#{@playlist.id}/date_info" %>
     </div>
   </div>
 </div>
