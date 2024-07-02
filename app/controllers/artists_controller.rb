@@ -11,7 +11,7 @@ class ArtistsController < ApplicationController
   def show
     @artist = Artist.find(params[:id])
     
-    if spotify_artist = get_spotify_data(@artist)
+    if spotify_artist = ApiInteraction.new(@artist).get_spotify_data()
       @artist_description = "#{@artist.name} is an artist on label X"
       @genres_description = "Genres: #{spotify_artist.genres.join(', ')}"
       @related_artists_description = "Related artists: #{spotify_artist.related_artists.map(&:name).join(', ')}"

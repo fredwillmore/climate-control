@@ -3,8 +3,33 @@ require 'support/factory_bot'
 
 describe ArtistsController do
   let!(:artist) { create :artist, { name: 'Hello World' } }
+  let!(:api_interaction_double) do
+    instance_double(ApiInteraction).tap do |api_interaction_double|
+      allow(api_interaction_double).to receive(:get_spotify_data).and_return(spotify_artist)
+    end
+  end
+  let!(:spotify_artist) do
+    double(RSpotify::Artist).tap do |artist|
+      allow(artist).to receive(:name).and_return "Herbie Hancock"
+      allow(artist).to receive(:genres).and_return [
+        "contemporary post-bop", "instrumental funk", "jazz", "jazz funk", "jazz fusion", "jazz piano"
+      ]
+      allow(artist).to receive(:related_artists).and_return [
+        related_artist
+      ]
+    end
+  end
+  let(:related_artist) do
+    double(RSpotify::Artist).tap do |artist|
+      allow(artist).to receive(:name).and_return "Chick Corea"
+      allow(artist).to receive(:genres).and_return [
+        "bebop", "contemporary post-bop", "ecm-style jazz", "electric bass", "jazz", "jazz funk", "jazz fusion", "jazz piano"
+      ]
+    end
+  end
 
   before do
+    allow(ApiInteraction).to receive(:new).and_return(api_interaction_double)
   end
 
   describe "GET #index" do
@@ -43,27 +68,6 @@ describe ArtistsController do
   end
 
   describe "GET #show" do
-    let!(:spotify_artist) do
-      double(RSpotify::Artist).tap do |artist|
-        allow(artist).to receive(:name).and_return "Herbie Hancock"
-        allow(artist).to receive(:genres).and_return [
-          "contemporary post-bop", "instrumental funk", "jazz", "jazz funk", "jazz fusion", "jazz piano"
-        ]
-        allow(artist).to receive(:related_artists).and_return [
-          related_artist
-        ]
-      end
-    end
-
-    let(:related_artist) do
-      double(RSpotify::Artist).tap do |artist|
-        allow(artist).to receive(:name).and_return "Chick Corea"
-        allow(artist).to receive(:genres).and_return [
-          "bebop", "contemporary post-bop", "ecm-style jazz", "electric bass", "jazz", "jazz funk", "jazz fusion", "jazz piano"
-        ]
-      end
-    end
-
     before do
       allow(RSpotify::Artist).to receive(:search).and_return([
         spotify_artist
