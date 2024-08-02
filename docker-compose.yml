@@ -1,0 +1,27 @@
+# version: '3' # obsolete
+services:
+  web:
+    build: .
+    command: bundle exec puma -C config/puma.rb
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+      - "3001:3001" # for debugging
+    depends_on:
+      - db
+    environment:
+      RAILS_ENV: development
+  db:
+    image: postgres:14
+    volumes:
+      - /opt/homebrew/var/postgresql@16:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: climate_control_development
+      POSTGRES_USER: climate_control
+      POSTGRES_PASSWORD: temp
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U climate_control"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
