@@ -16,16 +16,16 @@ ActiveRecord::Schema[7.1].define(version: 2018_08_23_214729) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "playlist_items", force: :cascade do |t|
     t.integer "position"
     t.bigint "track_id"
     t.bigint "playlist_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["playlist_id"], name: "index_playlist_items_on_playlist_id"
     t.index ["track_id"], name: "index_playlist_items_on_track_id"
   end
@@ -33,16 +33,16 @@ ActiveRecord::Schema[7.1].define(version: 2018_08_23_214729) do
   create_table "playlists", force: :cascade do |t|
     t.date "date"
     t.integer "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
   end
 
   create_table "tracks", force: :cascade do |t|
     t.string "name"
     t.string "comments"
     t.bigint "artist_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at", precision: nil, null: false
+    t.datetime "updated_at", precision: nil, null: false
     t.index ["artist_id"], name: "index_tracks_on_artist_id"
   end
 
