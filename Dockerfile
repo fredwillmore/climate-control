@@ -4,12 +4,15 @@ FROM ruby:3.2
 # # 2. Install dependencies
 # RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
 # Install dependencies for building native extensions and PostgreSQL client
+# RUN apt-get update -qq && apt-get install -y \
+#     nodejs postgresql-client \
+#     build-essential \
+#     libpq-dev \
+#     libmsgpack-dev \
+#     libsass-dev
+
 RUN apt-get update -qq && apt-get install -y \
-    nodejs postgresql-client \
-    build-essential \
-    libpq-dev \
-    libmsgpack-dev \
-    libsass-dev
+      nodejs
 
 # 3. Set the working directory
 WORKDIR /app
@@ -25,7 +28,7 @@ RUN bundle install --jobs=4 --retry=5
 COPY . /app
 
 # 7. Precompile assets (if applicable)
-RUN bundle exec rake assets:precompile
+# RUN bundle exec rake assets:precompile
 # RUN bundle exec rake db:migrate
 # RUN bundle exec rails runner db/seeds/artists.rb
 # RUN bundle exec rails runner db/seeds/tracks.rb
