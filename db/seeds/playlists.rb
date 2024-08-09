@@ -9,5 +9,9 @@ dates = data.map do |k, row|
   row['playlistdate']
 end.uniq
 dates.each do |date|
-  Playlist.create date: date  
+  Playlist.where(
+    date: date  
+  ).first_or_create(
+    date: date  
+  )
 end
