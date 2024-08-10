@@ -5,7 +5,7 @@ when "development", "test"
 when "production"
   spotify_client_id = ENV['SPOTIFY_CLIENT_ID']
   spotify_client_secret = ENV['SPOTIFY_CLIENT_SECRET']
-default
+else
   spotify_client_id = 'FIXME'
   spotify_client_secret = 'FIXME'
 end
