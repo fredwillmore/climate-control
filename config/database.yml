@@ -5,10 +5,12 @@ default: &default
 
 development:
   <<: *default
-  host: db
   database: climate_control_development
-  username: <%= ENV['POSTGRES_USER'] %>
-  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  username: climate_control
+  password: temp
+  host: host.docker.internal  # This works for Docker Desktop on macOS and Windows
+  # username: <%= ENV['POSTGRES_USER'] %>
+  # password: <%= ENV['POSTGRES_PASSWORD'] %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
@@ -20,6 +22,7 @@ test:
   password: temp
 
 production:
+  <<: *default
   database: climate_control_prod
   username: climate_control
   password: temp
