@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'support/factory_bot'
 
 describe Playlists::PlaylistItemsController do
-  let!(:artist) { create :artist, name: 'Test Artist' }
+  let!(:artist) { create :artist, id: 123, name: 'Test Artist' }
   let!(:track) { create :track, name: 'Hello World', artist: artist }
   let!(:track2) { create :track, name: 'Second Track', artist: artist }
   let!(:track3) { create :track, name: 'Third Track', artist: artist }
@@ -36,7 +36,9 @@ describe Playlists::PlaylistItemsController do
     end
 
     it "response with HTML body containing artist" do
-      expect(response.body).to match('Test Artist')
+      # matching <turbo-frame id="artist" src="/artists/123"></turbo-frame>
+      # TODO: incorporate capybara
+      expect(response.body).to match('artists/123')
     end
   end
 
