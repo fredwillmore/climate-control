@@ -1,4 +1,4 @@
-case Rails::env
+case Rails.env
 when "development", "test"
   spotify_client_id = Rails.application.credentials['spotify_client_id']
   spotify_client_secret = Rails.application.credentials['spotify_client_secret']
@@ -10,7 +10,11 @@ else
   spotify_client_secret = 'FIXME'
 end
 
-RSpotify.authenticate(
-  spotify_client_id,
-  spotify_client_secret
-)
+begin
+  RSpotify.authenticate(
+    spotify_client_id,
+    spotify_client_secret
+  ) unless Rails.env.test?
+rescue => e
+  puts "You have encountered an error with Spotify login."
+end
