@@ -2,11 +2,13 @@
   id="track"
 >
   <div class="card">
+    <div class="card-header card-title">
+      Song
+    </div>
     <div class="card-body">
-      <h5 class="card-title">Song</h5>
-      <h6 class="card-subtitle mb-2 text-muted">
+      <div class="card-subtitle">
         <%= @track.display_name if @track %>
-      </h6>
+      </div>
       <p class="card-text">
         <%= @track_description %>
         <% if @track_album_description %>

@@ -13,6 +13,7 @@ class ArtistsController < ApplicationController
     
     if spotify_artist = ApiInteraction.new(@artist).get_spotify_data()
       @artist_description = "#{@artist.name} is an artist on label X"
+      @artist_albums = spotify_artist.albums.map { |album| "#{album.name} - #{album.label}"}
       @genres_description = "Genres: #{spotify_artist.genres.join(', ')}"
       @related_artists_description = "Related artists: #{spotify_artist.related_artists.map(&:name).join(', ')}"
     end

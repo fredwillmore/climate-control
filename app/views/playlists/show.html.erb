@@ -1,28 +1,60 @@
 <turbo-frame id="playlists">
   <div class="card">
+    <div class="card-header card-title">
+      Playlist
+    </div>
     <div class="card-body">
-      <h5 class="card-title">Playlist</h5>
-      <h6 class="card-subtitle mb-2 text-muted">
+      <div class="card-subtitle">
         <% if @playlist %>
           <div class="container">
             <div class="row">
               <div class="col-2 text-center">
-                <% if @playlist.previous %>
-                  <a href="<%= playlist_url @playlist.previous %>" class="card-link" alt="Previous Playlist" onclick="document.querySelector('#secondary-click-previous').click()">
-                    <
-                  </a>
-                  <a id="secondary-click-previous" href="<%= "/playlists/#{@playlist.previous.id}/date_info" %>" data-turbo-frame="date_info" class="card-link"></a>
+                <% button_enabled = @playlist.previous ? true : false %>
+                <a
+                  <% if button_enabled %>
+                    href="<%= playlist_url @playlist.previous %>"
+                    onclick="document.querySelector('#secondary-click-previous').click()"
+                  <% else %>
+                    disabled
+                    class="btn disabled"
+                  <% end %>
+                  class="btn"
+                  alt="Previous Playlist"
+                >
+                  <i class="bi-arrow-left"></i>
+                </a>
+                <% if button_enabled %>
+                  <a
+                    id="secondary-click-previous"
+                    href="<%= "/playlists/#{@playlist.previous.id}/date_info" %>"
+                    data-turbo-frame="date_info"
+                  ></a>
                 <% end %>
               </div>
-              <div class="col-8 text-center">
+              <div class="col-8 text-center m-auto">
                 <%= l(@playlist.date) %>        
               </div>
               <div class="col-2 text-center">
-                <% if @playlist.next %>
-                  <a href="<%= playlist_url @playlist.next %>" class="card-link" alt="Next Playlist" onclick="document.querySelector('#secondary-click-next').click()">
-                    >
-                  </a>
-                  <a id="secondary-click-next" href="<%= "/playlists/#{@playlist.next.id}/date_info" %>" data-turbo-frame="date_info" class="card-link"></a>
+                <% button_enabled = @playlist.next ? true : false %>
+                <a
+                  <% if button_enabled %>
+                    href="<%= playlist_url @playlist.next %>"
+                    onclick="document.querySelector('#secondary-click-next').click()"
+                  <% else %>
+                    disabled
+                    class="btn disabled"
+                  <% end %>
+                  class="btn"
+                  alt="Next Playlist"
+                >
+                  <i class="bi-arrow-right"></i>
+                </a>
+                <% if button_enabled %>
+                  <a
+                    id="secondary-click-next"
+                    href="<%= "/playlists/#{@playlist.next.id}/date_info" %>"
+                    data-turbo-frame="date_info"
+                  ></a>
                 <% end %>
               </div>
             </div>
@@ -30,7 +62,7 @@
         <% else %>
           For selecting playlist
         <% end %>
-      </h6>
+      </div>
 
       <% if @playlist %>
         <%= turbo_frame_tag 'playlist_items', src: playlist_playlist_items_path(@playlist.id) %>

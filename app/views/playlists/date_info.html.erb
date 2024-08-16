@@ -1,12 +1,12 @@
 <%= turbo_frame_tag 'date_info' do  %>
   <div class="card">
+    <div class="card-header card-title">
+      On the date <%= l(@playlist.date) %>
+    </div>
     <div class="card-body">
-      <h5 class="card-title">
-        On the date <%= l(@playlist.date) %>
-      </h5>
-      <h6 class="card-subtitle mb-2 text-muted">
-        Here is some astronomical data for <%= l(@playlist.date) %>:
-      </h6>
+      <div class="card-subtitle">
+        Astronomical data for <%= l(@playlist.date) %>:
+      </div>
       <p class="card-text">
         <h6>Moon:</h6>
         <p>Current Phase: <%= @sun_moon_data['properties']['data']['curphase'] %>

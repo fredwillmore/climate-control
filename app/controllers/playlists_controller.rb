@@ -5,7 +5,7 @@ class PlaylistsController < ApplicationController
 
   def show
     @playlist = Playlist.find(params[:id]) || Playlist.first
-    end
+  end
     
   def date_info
     @playlist = Playlist.find(params[:id]) || Playlist.first

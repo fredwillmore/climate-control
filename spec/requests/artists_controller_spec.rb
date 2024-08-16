@@ -17,6 +17,7 @@ describe ArtistsController do
       allow(artist).to receive(:related_artists).and_return [
         related_artist
       ]
+      allow(artist).to receive(:albums).and_return []
     end
   end
   let(:related_artist) do

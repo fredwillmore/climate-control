@@ -2,11 +2,13 @@
   id="artist"
 >
   <div class="card">
+    <div class="card-header card-title">
+      Artist
+    </div>
     <div class="card-body">
-      <h5 class="card-title">Artist</h5>
-      <h6 class="card-subtitle mb-2 text-muted">
+      <div class="card-subtitle">
         <%= @artist.name %>
-      </h6>
+      </div>
       <p class="card-text">
         <%= @artist_description %>
         <% if @genres_description %>
