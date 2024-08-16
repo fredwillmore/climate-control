@@ -4,23 +4,65 @@
       On the date <%= l(@playlist.date) %>
     </div>
     <div class="card-body">
-      <div class="card-subtitle">
-        Astronomical data for <%= l(@playlist.date) %>:
+
+<div class="accordion" id="dateInfo">
+  <div class="accordion-item">
+    <div class="accordion-header collapsed" id="headingNews">
+      <button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNews" aria-expanded="false" aria-controls="collapseNews">
+        Headlines
+      </button>
+    </div>
+    <div id="collapseNews" class="accordion-collapse collapse" aria-labelledby="headingNews" data-bs-parent="#dateInfo">
+      <div class="accordion-body">
+        <div class="alert alert-info" role="alert">
+          Due to the lack of available data from 2003, we are showing headlines from 2023 instead.
+        </div>
+        <% @news_stories['data'].each do |news_story| %>
+          <div class="news-headline">
+            <%= news_story['title'] %>
+          </div>
+          <div class="news-story">
+            <%= news_story['description'] %>
+          </div>
+          <div class="news-url">
+            <%= link_to "Read Full Story", news_story['url'], target: :blank  %>
+          </div>
+          <div class="mb-2"></div>
+        <% end %>
+        <br>
+
       </div>
-      <p class="card-text">
-        <h6>Moon:</h6>
-        <p>Current Phase: <%= @sun_moon_data['properties']['data']['curphase'] %>
-        <% @sun_moon_data['properties']['data']['moondata'].each do |item| %>
-          <p><%= item['phen'] %>: <%= item['time'] %>
-        <% end %>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="btn accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Astronomical Data
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#dateInfo">
+      <div class="accordion-body">
+        <p class="card-text">
+          <h6>Moon:</h6>
+          <p>Current Phase: <%= @sun_moon_data['properties']['data']['curphase'] %>
+          <% @sun_moon_data['properties']['data']['moondata'].each do |item| %>
+            <p><%= item['phen'] %>: <%= item['time'] %>
+          <% end %>
 
-        <h6>Sun:</h6>
-        <% @sun_moon_data['properties']['data']['sundata'].each do |item| %>
-          <p><%= item['phen'] %>: <%= item['time'] %>
-        <% end %>
+          <h6>Sun:</h6>
+          <% @sun_moon_data['properties']['data']['sundata'].each do |item| %>
+            <p><%= item['phen'] %>: <%= item['time'] %>
+          <% end %>
 
-        @sun_moon_data
-      </p>
+          @sun_moon_data
+        </p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
     </div>
   </div>
 <% end %>

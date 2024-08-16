@@ -80,3 +80,14 @@ a:hover {
   transform: translateY(-5px);
   transition: transform 0.3s ease;
 }
+
+.news-headline {
+  // color: var(--secondary-color);
+  font-size: 1em;
+  font-weight: 500;
+}
+
+.news-story {
+  font-size: .9em;
+  font-weight: 100;
+}
